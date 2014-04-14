@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="AudioRecoder" default="jar" basedir=".">
+	<property name="jar.root.dir" value="${basedir}/bin"/>
+	<property name="bin.dir" value="${basedir}\bin"/>
+	<property name="lib.dir" value="${basedir}\lib"/>
+
+	<!-- <property name="project.lib.dir" value="${basedir}/../AudioRecoder/lib"/> -->
+
+    <!-- =================================================================== -->
+    <!-- Define the class path                                               -->
+    <!-- =================================================================== -->
+    <path id="jar.class.path">
+        <fileset dir="${jar.root.dir}">
+            <include name="*.class"/>
+        </fileset>
+    </path>
+
+    <!-- =================================================================== -->
+    <!-- Initialise                                                          -->
+    <!-- =================================================================== -->
+    <target name="init">
+        <tstamp>
+            <format property="TODAY" pattern="d-MM-yy"/>
+        </tstamp>
+        <echo>jar.root.dir="${jar.root.dir}"</echo>
+    </target>
+
+
+    <!-- =================================================================== -->
+    <!-- Main                                                                -->
+    <!-- =================================================================== -->
+    <target name="jar" depends="clean,init">
+        <echo>Create jleadCore JAR file...</echo>
+
+	 <jar jarfile="${jar.root.dir}/AudioRecoder.jar" basedir="${jar.root.dir}">
+    	<!-- <copy file="${jar.root.dir}/AudioRecoder.jar" tofile="${project.lib.dir}/AudioRecoder.jar"/> -->
+
+	 	<zipfileset src="${lib.dir}\packlibs.jar" excludes="LICENSE, NOTICE, META-INF/**"/>
+	 	<zipfileset src="${lib.dir}\swt64.jar" excludes="LICENSE, NOTICE, META-INF/**"/>
+
+	 	<manifest>
+	 	  	<attribute name="Main-Class" value="org.delafer.xmlbench.MainWindow" />
+	 	 </manifest>
+	 </jar>
+    </target>
+
+
+    <!-- =================================================================== -->
+    <!-- Clean                                                               -->
+    <!-- =================================================================== -->
+    <target name="clean">
+        <delete file="${jar.root.dir}/AudioRecoder.jar"/>
+    </target>
+
+</project>

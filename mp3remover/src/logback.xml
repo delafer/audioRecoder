@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<configuration>
+	<appender class="ch.qos.logback.core.FileAppender" name="FILE">
+		<File>log/red5-io-test.log</File>
+		<Append>false</Append>
+		<encoder>
+			<pattern>%d{ISO8601} [%thread] %-5level %logger{35} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<root>
+		<level value="ERROR" />
+		<appender-ref ref="FILE" />
+	</root>   
+   
+
+</configuration>
